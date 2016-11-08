@@ -60,9 +60,9 @@ def extractTracks(beg_ls,name_ls,input_file,artist,album,genre):
 
         call(["ffmpeg","-i",names[index] + ".wav","-q","6", names[index] + ".ogg"])
 
-        call(["id3tag","--artist",artist,"--album",album,"--song",names[index],"--track",str(index+1),"--total",str(len(names)),"--genre",genre,names[index]+ ".ogg"])
-
         call(["normalize-ogg",names[index] + ".ogg"])
+
+        call(["id3tag","--artist",artist,"--album",album,"--song",names[index],"--track",str(index+1),"--total",str(len(names)),"--genre",genre,names[index]+ ".ogg"])
 
     call(["rm","*.wav"])
 
