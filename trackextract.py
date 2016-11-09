@@ -84,7 +84,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Split a single audio file into multiple based on a list in a text file.')
 
     parser.add_argument('infile',help="audio file to split")
-    parser.add_argument('listfile',help="list of tracks with timestamps [dd:h]h:mm, one per line")
+    parser.add_argument('listfile',help="list of tracks with timestamps [hh:m]m:ss, one per line")
     parser.add_argument('-A',"--artist",default="Unknown Artist",help="Artist")
     parser.add_argument('-a',"--album",default="Unknown Album",help="Album")
     parser.add_argument('-g',"--genre",default="Unknown Genre",help="Genre")
