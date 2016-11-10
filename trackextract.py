@@ -51,7 +51,7 @@ def parseList(ls_file):
 
         else:
 
-            print("too many matches")
+            print("Could not find timestamp in line:" + line)
 
     return {"time": timestamps, "name": names}
 
@@ -88,7 +88,9 @@ def extractTracks(beg_ls,name_ls,args):
 
         call(["normalize-ogg",names[index] + ".ogg"])
 
-        call(["id3tag","--artist",artist,"--album",album,"--song",names[index],"--track",str(index+1),"--total",str(len(names)),"--genre",genre,names[index]+ ".ogg"])
+        call(["vorbiscomment","-t","ARTIST=" + artist,"-t","ALBUM=" + album,"-t","TITLE=" + names[index],"-t","TRACKNUMBER=" + str(index+1),"-t","TRACKTOTAL=" + str(len(names)),"-t","GENRE=" + genre,"-w",names[index]+ ".ogg"])
+
+        call(["vorbiscomment","-l",names[index] + ".ogg"])
 
     call(["rm",input_file + ".ogg"])
 
