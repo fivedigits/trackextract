@@ -82,11 +82,9 @@ def extractTracks(beg_ls,name_ls,args):
 
         print("Extracting: " + names[index])
 
-        call(["sox",input_file + ".ogg","-C","6",names[index] + ".ogg","trim",beg_ls[index],end_ls[index]])
+        call(["sox",input_file + ".ogg","-C","6","--norm=-12",names[index] + ".ogg","trim",beg_ls[index],end_ls[index]])
 
     for index in range(len(names)):
-
-        call(["normalize-ogg",names[index] + ".ogg"])
 
         call(["vorbiscomment","-t","ARTIST=" + artist,"-t","ALBUM=" + album,"-t","TITLE=" + names[index],"-t","TRACKNUMBER=" + str(index+1),"-t","TRACKTOTAL=" + str(len(names)),"-t","GENRE=" + genre,"-w",names[index]+ ".ogg"])
 
