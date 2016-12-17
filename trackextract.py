@@ -65,9 +65,9 @@ def extractTracks(beg_ls,name_ls,args):
 
     genre = args.genre
 
-    print("Converting infile to ogg.")
+    # print("Converting infile to ogg.")
 
-    call(["ffmpeg","-loglevel","quiet","-i",input_file,"-q","9",input_file + ".ogg"])
+    # call(["ffmpeg","-loglevel","quiet","-i",input_file,"-q","9",input_file + ".ogg"])
 
     if len(name_ls) != len(beg_ls):
 
@@ -82,7 +82,7 @@ def extractTracks(beg_ls,name_ls,args):
 
         print("Extracting: " + names[index])
 
-        call(["sox",input_file + ".ogg","-C","6","--norm=-12",names[index] + ".ogg","trim",beg_ls[index],end_ls[index]])
+        call(["sox",input_file,"-C","6","--norm=-9",names[index] + ".ogg","trim",beg_ls[index],end_ls[index]])
 
     for index in range(len(names)):
 
@@ -90,7 +90,10 @@ def extractTracks(beg_ls,name_ls,args):
 
         call(["vorbiscomment","-l",names[index] + ".ogg"])
 
-    call(["rm",input_file + ".ogg"])
+    call(["rm",input_file])
+
+    call(["vorbisgain","-a","*.ogg"])
+
 
 if __name__ == "__main__":
 
